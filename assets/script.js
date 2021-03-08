@@ -5,9 +5,9 @@ const chart = new Chart(ctx, {
 
     // The data for our dataset
     data: {
-        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+        labels: ['2014', '2015', '2016', '2017', '2018', '2019', '2020'],
         datasets: [{
-            label: 'My First dataset',
+            label: 'Data',
             backgroundColor: 'rgb(255, 99, 132)',
             borderColor: 'rgb(255, 99, 132)',
             data: [0, 10, 5, 2, 20, 30, 45]
