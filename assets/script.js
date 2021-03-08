@@ -1,45 +1,150 @@
-const source = 'https://canvasjs.com/services/data/datapoints.php';
 
+let graphOne = () => {
 
-function callApi(source) {
-    fetch(source).then(res => res.json()).
-    then((res) => {
-        let newArr =  [];
-        res.forEach(e => {
-            newArr.push(e[1]);
-        });
-        console.log(newArr);
-        return newArr;
+    let ctx = document.getElementById("crimeStatistic").getContext("2d");
+    let dataPoints = [];
+    let label = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+    let i = 9;
+    let chart1 = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: label,
+            datasets: [{
+                label: ["Crime Statistics"],
+                borderColor: "red",
+                data: dataPoints,
+            }]
+        }
     })
+    //Update and ajax
+    function updateGraf() {
+        i++;
+        label.push(i);
+        fetch('https://canvasjs.com/services/data/datapoints.php')
+            .then(function (response) {
+                return response.json()
+            })
+            .then(function (data) {
+                dataPoints.length + 1;
+                data.forEach(element => dataPoints.push(parseInt(element[1])));
+                chart1.update();
+            })
+    };
+    setInterval(updateGraf, 1000);
 }
 
-let newData = callApi(source );
+graphOne();
 
+//Graph 2
+const ctxCrime = document.getElementById('crime').getContext('2d');
+const chartCrime = new Chart(ctxCrime, {
 
-
-const ctx = document.getElementById('crimeStatistic').getContext('2d');
-const chart = new Chart(ctx, {
-    // The type of chart we want to create
+    //The type of chart we want to create
     type: 'line',
 
-    // The data for our dataset
+    //The data for our dataset
 
     data: {
-        labels: ['2014', '2015', '2016', '2017', '2018', '2019', '2020'],
+        labels: ["2002", "2012"],
         datasets: [{
             label: 'Data',
-            backgroundColor: 'rgb(255, 99, 132)',
             borderColor: 'rgb(255, 99, 132)',
             data: [0, 10, 5, 2, 20, 30, 45]
-            
+
         }]
     },
-    
 
-    // Configuration options go here
-    options: {}
+
+    //Configuration options go here
+    options: {
+        title: {
+            display: true,
+            text: 'Prison population'
+        }
+    }
 });
- /*setInterval(() => {
-     chart.data.data = callApi(source );
-     
- }, 5000);*/
+
+
+//Graph 3
+const ctxHomicide = document.getElementById('homicide').getContext('2d');
+const chartHomicide = new Chart(ctxHomicide, {
+    //The type of chart we want to create
+    type: 'line',
+
+    //The data for our dataset
+    data: {
+        labels: ["2007-2009", "2010-2012"],
+        datasets: [{
+            label: 'Data',
+            borderColor: 'rgb(255, 99, 132)',
+            data: [0, 10, 5, 2, 20, 30, 45]
+        }]
+    },
+
+    //Configuration options go here
+    options: {
+        title: {
+            display: true,
+            text: 'Crime recorded'
+        }
+    }
+});
+
+
+//conversion tableau en json
+function tableToJson(table) {
+    let data = [];
+    for (i = 1; i < table.rows.length; i++) {
+        let tableRow = table.rows[i];
+        let rowData = [];
+        for (j = 1; j < tableRow.cells.length; j++) {
+            rowData.push(tableRow.cells[j].innerHTML);;
+        }
+        data.push(rowData);
+    }
+    return data;
+}
+let table1D = [];
+let table1 = document.getElementById("table1");
+table = tableToJson(table1);
+
+Array.from(table).forEach(element => {
+    let sum = 0;
+    for (let i = 1; i < element.length; i++) {
+        if (parseFloat(element[i])) {
+            sum += parseFloat(element[i]);
+        }
+
+    }
+    table1D.push([element[0], sum])
+    //console.log(element[0]);
+
+
+
+})
+const table2007_2009 = [];
+const table2010_2012 = [];
+let table2 = document.getElementById("table2");
+
+table2 = tableToJson(table2);
+Array.from(table2).forEach((element) => {
+    table2007_2009.push([element[0], element[2]]);
+    table2010_2012.push([element[0], element[1]]);
+
+})
+console.log(table2010_2012);
+
+
+
+
+
+//get Random color
+let randomColor = () => {
+    let red = Math.floor(Math.random() * 256);
+    let green = Math.floor(Math.random() * 256);
+    let blue = Math.floor(Math.random() * 256);
+    let color = 'rgb(' + red + ',' + green + ',' + blue + ')';
+    return color;
+}
+
+
