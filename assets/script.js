@@ -360,8 +360,6 @@ let graphTwo = () => {
 
 }
 
-graphTwo();
-
 //Graph 3 
 let graphThree = () => {
     target = document.getElementById('mw-content-text');
