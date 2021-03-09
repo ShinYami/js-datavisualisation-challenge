@@ -353,7 +353,7 @@ let graphTwo = () => {
         options: {
             title: {
                 display: true,
-                text: 'Prison population'
+                text: 'Crimes'
             }
         }
     });
