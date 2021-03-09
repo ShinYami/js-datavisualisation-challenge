@@ -41,7 +41,8 @@
 }
 
 .postedit-icon {
-	padding-left: 41px; /* 25 + 8 + 8 */
+	padding-left: 41px;
+	/* 25 + 8 + 8 */
 	/* like min-height, but old IE compatible and keeps text vertically aligned, too */
 	line-height: 25px;
 	background-repeat: no-repeat;
