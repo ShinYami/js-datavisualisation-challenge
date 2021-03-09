@@ -15,19 +15,15 @@
 .statexpbpm-icon-current {
 	background-image: url(media/1.png);
 }
-
 .statexpbpm-icon-stable {
 	background-image: url(media/2.png);
 }
-
 .statexpbpm-icon-quality {
 	background-image: url(media/3.png);
 }
-
 .statexpbpm-icon-locked {
 	background-image: url(media/lock-closed.png);
 }
-
 .statexpbpm-icon-unlocked {
 	width: 23px;
 	background-image: url(media/lock-open.png);
@@ -40,7 +36,7 @@
 	font-size: 95%;
 	font-weight: normal;
 	margin: 0em 0em 0em 1em;
-
+	
 	text-align: left;
 	max-width: 450px;
 	line-height: 16px;

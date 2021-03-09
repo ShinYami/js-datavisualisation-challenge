@@ -13,7 +13,7 @@
 }
 
 /* IGNORED BY IE6 */
-html>body .suggestions {
+html > body .suggestions {
 	margin: -1px 0 0 0;
 }
 
